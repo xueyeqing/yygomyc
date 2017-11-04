@@ -12,6 +12,15 @@ import io.reactivex.disposables.Disposable;
  */
 public abstract class HttpRxObserver<T> implements Observer<T> {
 
+    private String mTag;//请求标识
+
+    public HttpRxObserver() {
+    }
+
+    public HttpRxObserver(String tag) {
+        this.mTag = tag;
+    }
+
     @Override
     public void onSubscribe(Disposable d) {
 

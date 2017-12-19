@@ -21,14 +21,14 @@ public class HttpResponse {
     /**
      * 状态码
      */
-    @SerializedName("retCode")
-    private int code;
+    @SerializedName("code")
+    private String code;
 
     /**
      * 数据对象[成功返回对象,失败返回错误说明]
      */
-    @SerializedName("result")
-    private Object result;
+    @SerializedName("res")
+    private Object res;
 
     /**
      * 是否成功(这里约定200)
@@ -36,11 +36,12 @@ public class HttpResponse {
      * @return
      */
     public boolean isSuccess() {
-        return code == 200 ? true : false;
+        int codes = Integer.parseInt(code);
+        return codes == 1 ? true : false;
     }
 
     public String toString() {
-        String response = "[http response]" + "{\"code\": " + code + ",\"msg\":" + msg + ",\"result\":" + new Gson().toJson(result) + "}";
+        String response = "[http response]" + "{\"code\": " + code + ",\"msg\":" + msg + ",\"result\":" + new Gson().toJson(res) + "}";
         return response;
     }
 
@@ -54,18 +55,18 @@ public class HttpResponse {
     }
 
     public int getCode() {
-        return code;
+        return Integer.parseInt(code);
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
     public Object getResult() {
-        return result;
+        return res;
     }
 
-    public void setResult(Object result) {
-        this.result = result;
+    public void setResult(Object res) {
+        this.res = res;
     }
 }

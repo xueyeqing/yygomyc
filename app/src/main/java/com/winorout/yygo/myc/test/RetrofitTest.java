@@ -28,7 +28,7 @@ public class RetrofitTest {
      *
      * @author ZhongDaFeng
      */
-    public void test(RxActivity activity, String account, String psw) {
+    public void test(RxActivity activity, String name, String password) {
         //设置唯一TAG
         HttpRxObserver httpRxObserver = new HttpRxObserver(TAG + "login") {
             @Override
@@ -56,7 +56,7 @@ public class RetrofitTest {
         };
 
         // 启动
-        new RetrofitTest().login(activity, account, psw).subscribe(httpRxObserver);
+        new RetrofitTest().login(activity, name, password).subscribe(httpRxObserver);
 
     }
 
@@ -65,11 +65,11 @@ public class RetrofitTest {
      *
      * @author ZhongDaFeng
      */
-    public Observable login(RxActivity activity, String phone, String psw) {
+    public Observable login(RxActivity activity, String name, String password) {
         //构建请求数据
         Map<String, Object> request = HttpRequest.getRequest();
-        request.put("phone", phone);
-        request.put("psw", psw);
+        request.put("name", name);
+        request.put("password", password);
         /**
          * 获取请求Observable
          * 1.RxActivity,RxFragment...所在页面继承RxLifecycle支持的组件

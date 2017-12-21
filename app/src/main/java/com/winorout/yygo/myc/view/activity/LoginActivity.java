@@ -20,7 +20,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mLoginPresenter.login("admin", "1234567");
+        mLoginPresenter.login("user", "1234567");
     }
 
     @Override

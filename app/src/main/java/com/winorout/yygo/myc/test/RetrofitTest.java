@@ -36,6 +36,7 @@ public class RetrofitTest {
                 /**
                  * 开启loading等
                  */
+                LogUtils.w("onStart" + d);
             }
 
             @Override

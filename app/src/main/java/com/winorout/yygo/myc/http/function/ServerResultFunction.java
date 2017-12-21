@@ -9,7 +9,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 
 /**
- * @Description:
+ * @Description: 服务器端返回结果处理
  * @Author: zyzhang
  * @Date: 17/11/4 上午9:42
  */

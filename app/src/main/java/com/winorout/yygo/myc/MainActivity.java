@@ -17,7 +17,7 @@ public class MainActivity extends BaseActivity implements ILoginView {
         setContentView(R.layout.activity_main);
 
         retrofitTest = new RetrofitTest();
-        retrofitTest.test(MainActivity.this, "admin", "anhui11chuxing");
+        retrofitTest.test(MainActivity.this, "user", "abc123456");
     }
 
     @Override

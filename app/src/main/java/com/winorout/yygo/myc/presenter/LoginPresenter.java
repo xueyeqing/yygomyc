@@ -15,11 +15,13 @@ import java.util.Map;
 import io.reactivex.disposables.Disposable;
 
 /**
- * @Description:
+ * @Description: 登录Presenter
  * @Author: zyzhang
  * @Date: 17/11/3 下午4:53
  */
 public class LoginPresenter extends BasePresenter<ILoginView, LoginActivity> {
+
+    private final String TAG = LoginPresenter.class.getSimpleName();
 
     public LoginPresenter(ILoginView view, LoginActivity activity) {
         super(view, activity);
@@ -32,10 +34,10 @@ public class LoginPresenter extends BasePresenter<ILoginView, LoginActivity> {
         request.put("name", name);
         request.put("password", password);
 
-        HttpRxObserver httpRxObserver = new HttpRxObserver() {
+        HttpRxObserver httpRxObserver = new HttpRxObserver(TAG + "getInfo") {
             @Override
             protected void onStart(Disposable d) {
-                LogUtils.d("onstart");
+                LogUtils.d("onStart:" + d);
             }
 
             @Override
@@ -45,7 +47,7 @@ public class LoginPresenter extends BasePresenter<ILoginView, LoginActivity> {
 
             @Override
             protected void onSuccess(Object response) {
-                LogUtils.d("onsuccess" + response);
+                LogUtils.d("onSuccess" + response);
             }
         };
 

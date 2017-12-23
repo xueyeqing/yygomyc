@@ -1,7 +1,6 @@
 package com.winorout.yygo.myc.base;
 
 import android.os.Bundle;
-
 import com.trello.rxlifecycle2.components.RxActivity;
 
 /**
@@ -16,6 +15,16 @@ public abstract class BaseActivity extends RxActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initToolbar();
+    }
+
+    /**
+     * 初始化Toolbar
+     */
+    private void initToolbar() {
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        TextView textView = (TextView) findViewById(R.id.toolbar_title);
     }
 
     /**

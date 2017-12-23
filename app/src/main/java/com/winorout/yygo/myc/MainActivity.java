@@ -9,15 +9,15 @@ import com.winorout.yygo.myc.view.iface.ILoginView;
 
 public class MainActivity extends BaseActivity implements ILoginView {
 
-    RetrofitTest retrofitTest;
+//    RetrofitTest retrofitTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        retrofitTest = new RetrofitTest();
-        retrofitTest.test(MainActivity.this, "user", "abc123456");
+//        retrofitTest = new RetrofitTest();
+//        retrofitTest.test(MainActivity.this, "user", "abc123456");
     }
 
     @Override

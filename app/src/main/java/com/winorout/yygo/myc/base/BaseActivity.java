@@ -1,6 +1,7 @@
 package com.winorout.yygo.myc.base;
 
 import android.os.Bundle;
+
 import com.trello.rxlifecycle2.components.RxActivity;
 
 /**

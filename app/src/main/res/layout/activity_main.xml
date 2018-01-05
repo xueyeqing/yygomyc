@@ -6,9 +6,19 @@
     android:fitsSystemWindows="true"
     tools:context="com.winorout.yygo.myc.MainActivity">
 
-    <!--toobar-->
-    <include layout="@layout/app_bar"></include>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <!--toobar-->
+        <include layout="@layout/app_bar"></include>
 
+        <com.ashokvarma.bottomnavigation.BottomNavigationBar
+            android:id="@+id/bottom_navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"></com.ashokvarma.bottomnavigation.BottomNavigationBar>
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

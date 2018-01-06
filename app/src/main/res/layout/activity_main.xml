@@ -10,8 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--toobar-->
-        <include layout="@layout/app_bar"></include>
+        <!--toolbar-->
+        <include
+            android:id="@+id/maintoolbar"
+            layout="@layout/app_bar"></include>
+
+        <!--fragment-->
+        <include
+            layout="@layout/fragment_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/maintoolbar"></include>
 
         <com.ashokvarma.bottomnavigation.BottomNavigationBar
             android:id="@+id/bottom_navigation_bar"

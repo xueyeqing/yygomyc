@@ -8,7 +8,7 @@ import android.util.Log;
  * @Date: 17/11/3 下午5:37
  */
 public class LogUtils {
-    private static final String TAG = "每易充-Rx-Mvp";
+    private static final String TAG = "每易充-myc";
     private static boolean allowD = true;
     private static boolean allowE = true;
     private static boolean allowI = true;

@@ -1,31 +1,21 @@
 package com.winorout.yygo.myc.base;
 
 import android.os.Bundle;
-
 import com.trello.rxlifecycle2.components.RxActivity;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 /**
- * @Description: 所有的Activity都继承自此Activity
+ * @Description: 所有的Activity都继承自此AppCompatActivity
  * @Author: zyzhang
  * @Date: 17/11/4 上午11:08
  * 1.规范团队开发
- * 2.统一处理Activity所需配置,初始化
+ * 2.统一处理AppCompatActivity所需配置,初始化
  */
-public abstract class BaseActivity extends RxActivity {
+public abstract class BaseActivity extends RxAppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        initToolbar();
-    }
-
-    /**
-     * 初始化Toolbar
-     */
-    private void initToolbar() {
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        TextView textView = (TextView) findViewById(R.id.toolbar_title);
     }
 
     /**

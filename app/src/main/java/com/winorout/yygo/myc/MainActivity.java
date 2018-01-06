@@ -1,19 +1,36 @@
 package com.winorout.yygo.myc;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.winorout.yygo.myc.base.BaseActivity;
 import com.winorout.yygo.myc.model.bean.UserBean;
-import com.winorout.yygo.myc.test.RetrofitTest;
+import com.winorout.yygo.myc.utils.LogUtils;
+import com.winorout.yygo.myc.utils.SPUtils;
+import com.winorout.yygo.myc.view.fragment.HomeFragment;
+import com.winorout.yygo.myc.view.fragment.MyFragment;
 import com.winorout.yygo.myc.view.iface.ILoginView;
 
+/**
+ * 主入口
+ */
 public class MainActivity extends BaseActivity implements ILoginView, BottomNavigationBar.OnTabSelectedListener {
 
-    //    RetrofitTest retrofitTest;
     private BottomNavigationBar mBottomNavigationBar;
+
+    private HomeFragment homeFragment;
+    private MyFragment myFragment;
+
+    private FragmentManager fragmentManager;
+
+    private SPUtils spUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +40,25 @@ public class MainActivity extends BaseActivity implements ILoginView, BottomNavi
 //        retrofitTest = new RetrofitTest();
 //        retrofitTest.test(MainActivity.this, "user", "abc123456");
 
+        initToolbar("每易充");
+        // 初始化数据
         init();
+    }
+
+    /**
+     * 初始化Toolbar
+     */
+    private void initToolbar(String title) {
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // 置空title
+        toolbar.setTitle("");
+
+        TextView textView = (TextView) findViewById(R.id.toolbar_title);
+        textView.setText(title);
+
+        setSupportActionBar(toolbar);
+
     }
 
     @Override
@@ -46,6 +81,17 @@ public class MainActivity extends BaseActivity implements ILoginView, BottomNavi
 
         mBottomNavigationBar.setTabSelectedListener(this);
 
+        // fragment 相关代码
+        fragmentManager = getSupportFragmentManager();
+        setDefaultFragment();
+
+    }
+
+    private void setDefaultFragment() {
+        spUtils.put(this, "buttomposition", 0);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        HomeFragment mhomeFragment = homeFragment.newInstance(getString(R.string.item_home));
+        transaction.replace(R.id.sub_content, mhomeFragment).commit();
     }
 
     @Override
@@ -79,17 +125,42 @@ public class MainActivity extends BaseActivity implements ILoginView, BottomNavi
      * @param position
      */
     @Override
-    public void onTabSelected(int position) {
-        Toast.makeText(this, "position=" + position, Toast.LENGTH_SHORT).show();
+    public void onTabSelected(int position) { //未选中 -> 选中
+
+        //开启事务
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        switch (position) {
+            case 0:
+                spUtils.put(this, "buttompos", 0);
+                if (homeFragment == null) {
+                    homeFragment = HomeFragment.newInstance(getString(R.string.item_home));
+                }
+                transaction.replace(R.id.sub_content, homeFragment);
+                initToolbar("每易充");
+                break;
+            case 1:
+                // 点击扫一扫，底部按钮不变化
+                Object pos = SPUtils.get(this, "buttompos", 0);
+                mBottomNavigationBar.selectTab((Integer) pos);
+                break;
+            case 2:
+                spUtils.put(this, "buttompos", 2);
+                if (myFragment == null) {
+                    myFragment = MyFragment.newInstance(getString(R.string.item_profile));
+                }
+                transaction.replace(R.id.sub_content, myFragment);
+                initToolbar("我的");
+                break;
+        }
+        transaction.commit();
+
     }
 
     @Override
-    public void onTabUnselected(int position) {
-
+    public void onTabUnselected(int position) { //选中 -> 未选中
     }
 
     @Override
-    public void onTabReselected(int position) {
-
+    public void onTabReselected(int position) { //选中 -> 选中
     }
 }

@@ -43,6 +43,13 @@ public class MainActivity extends BaseActivity implements ILoginView, BottomNavi
 
         initToolbar("每易充");
         init();
+
+        if (BuildConfig.LOG_DEBUG) {
+            Toast.makeText(this, "我是Debug模式", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "我是开发者模式", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     /**

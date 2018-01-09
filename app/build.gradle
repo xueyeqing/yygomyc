@@ -23,7 +23,23 @@ android {
     }
     buildTypes {
         release {
-            // 混淆
+            // 不显示Log,在java代码中的调用方式为：BuildConfig.LOG_DEBUG
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            // 是否混淆 true：启用混淆,false:不启用
+            minifyEnabled true
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            // shrinkResources true
+            //加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+            signingConfig signingConfigs.app
+        }
+
+        debug {
+            buildConfigField("boolean", "LOG_DEBUG", "true")
+            // 是否混淆 true：启用混淆,false:不启用
             minifyEnabled false
             //Zipalign优化
             zipAlignEnabled true

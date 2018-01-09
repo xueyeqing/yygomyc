@@ -1,7 +1,6 @@
-## 项目名：yygomyc 每易充 
-练习
+## 项目名：yygomyc 每易充
 
-### mvp＋retiofit＋rxjav完成整体框架
+### 1、mvp＋retiofit＋rxjav完成整体框架
    > 网络模块完成（测试登录接口通过）
    
    > 使用依赖如下：
@@ -22,13 +21,13 @@
     ```
    
    
-### v7包版本：com.android.support:appcompat-v7:25.4.0   
+### 2、v7包版本：com.android.support:appcompat-v7:25.4.0   
 
-### 添加SplashActivity（欢迎页解决启动时短暂的白屏，可在此加入广告页）
+### 3、添加SplashActivity（欢迎页解决启动时短暂的白屏，可在此加入广告页）
    
-### 顶部菜单使用toorbar（android.support.v7.widget.Toolbar）
+### 4、顶部菜单使用toorbar（android.support.v7.widget.Toolbar）
 
-### 底部菜单使用BottomNavigationBar
+### 5、底部菜单使用BottomNavigationBar
 
  > 使用版本：compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.1' 
  
@@ -43,19 +42,19 @@
     然后ViewStub本身就会被填充起来的布局资源替换掉。
   ```
 
-### 打包
+### 6、打包
  > 创建签名文件
  
  > 打包：1:Build->Generate Signed APK。 2:Gradle配置打包（具体详细见build.gradle）
     
- > 用Terminal执行命令打包y要点：
+ > 用Terminal执行命令打包要点：
    ```
     添加gradle环境变量
     window的打包命令为：gradlew assembleRelease
     mac：./gradlew assembleRelease
    ```                                   
 
-### 多渠道打包
+### 7、多渠道打包（后续补充。。。）
  > Walle：Android Signature V2 Scheme签名下的新一代渠道包打包神器
  
  > [介绍地址](https://tech.meituan.com/android-apk-v2-signature-scheme.html)
@@ -85,3 +84,19 @@
         channelFile = new File("${project.getProjectDir()}/channel")
     }
 ```
+ > 操作：在Terminal中输入对应的指令，即可完成打包
+ ```
+ 1:所有渠道:./gradlew clean assembleReleaseChannels
+    渠道包的生成目录默认存放在 build/outputs/apk/，也可以通过Walle闭包中的apkOutputFolder参数来指定输出目录
+ 2:指定渠道:
+     如：./gradlew clean assembleReleaseChannels -PchannelList=huawei
+ 
+```
+
+ > 结果：
+ ```
+ 运行./gradlew clean assembleReleaseChannels后，
+ 可以在build/outputs/channels看到对应的渠道包。
+```
+
+### 8、混淆

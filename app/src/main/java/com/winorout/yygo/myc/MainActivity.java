@@ -39,9 +39,9 @@ public class MainActivity extends BaseActivity implements ILoginView, BottomNavi
 
 //        retrofitTest = new RetrofitTest();
 //        retrofitTest.test(MainActivity.this, "user", "abc123456");
+        // 初始化数据
 
         initToolbar("每易充");
-        // 初始化数据
         init();
     }
 
@@ -73,9 +73,9 @@ public class MainActivity extends BaseActivity implements ILoginView, BottomNavi
         mBottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         mBottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
 
-        mBottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.main_selected, getString(R.string.item_home)).setInactiveIconResource(R.mipmap.main_normal).setActiveColorResource(R.color.colorAccent).setInActiveColorResource(R.color.colorBlack))
-                .addItem(new BottomNavigationItem(R.mipmap.main_selected, getString(R.string.item_scan)).setInactiveIconResource(R.mipmap.main_normal).setActiveColorResource(R.color.colorAccent).setInActiveColorResource(R.color.colorBlack))
-                .addItem(new BottomNavigationItem(R.mipmap.profile_selected, getString(R.string.item_profile)).setInactiveIconResource(R.mipmap.profile_normal).setActiveColorResource(R.color.colorAccent).setInActiveColorResource(R.color.colorBlack))
+        mBottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.main_selected, getString(R.string.item_home)).setInactiveIconResource(R.mipmap.main_normal).setActiveColorResource(R.color.colorRed_t).setInActiveColorResource(R.color.colorBlack))
+                .addItem(new BottomNavigationItem(R.mipmap.main_selected, getString(R.string.item_scan)).setInactiveIconResource(R.mipmap.main_normal).setActiveColorResource(R.color.colorRed_t).setInActiveColorResource(R.color.colorBlack))
+                .addItem(new BottomNavigationItem(R.mipmap.profile_selected, getString(R.string.item_profile)).setInactiveIconResource(R.mipmap.profile_normal).setActiveColorResource(R.color.colorRed_t).setInActiveColorResource(R.color.colorBlack))
                 .setFirstSelectedPosition(0)
                 .initialise();
 
@@ -85,13 +85,6 @@ public class MainActivity extends BaseActivity implements ILoginView, BottomNavi
         fragmentManager = getSupportFragmentManager();
         setDefaultFragment();
 
-    }
-
-    private void setDefaultFragment() {
-        spUtils.put(this, "buttomposition", 0);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        HomeFragment mhomeFragment = homeFragment.newInstance(getString(R.string.item_home));
-        transaction.replace(R.id.sub_content, mhomeFragment).commit();
     }
 
     @Override
@@ -126,7 +119,34 @@ public class MainActivity extends BaseActivity implements ILoginView, BottomNavi
      */
     @Override
     public void onTabSelected(int position) { //未选中 -> 选中
+        setFragment(position);
+    }
 
+    @Override
+    public void onTabUnselected(int position) { //选中 -> 未选中
+    }
+
+    @Override
+    public void onTabReselected(int position) { //选中 -> 选中
+    }
+
+
+    /**
+     * 默认fragment
+     */
+    private void setDefaultFragment() {
+        spUtils.put(this, "buttomposition", 0);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        HomeFragment mhomeFragment = homeFragment.newInstance(getString(R.string.item_home));
+        transaction.replace(R.id.sub_content, mhomeFragment).commit();
+    }
+
+    /**
+     * 不同fragment之间的切换，未选中 -> 选中
+     *
+     * @param position
+     */
+    private void setFragment(int position) {
         //开启事务
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (position) {
@@ -153,14 +173,5 @@ public class MainActivity extends BaseActivity implements ILoginView, BottomNavi
                 break;
         }
         transaction.commit();
-
-    }
-
-    @Override
-    public void onTabUnselected(int position) { //选中 -> 未选中
-    }
-
-    @Override
-    public void onTabReselected(int position) { //选中 -> 选中
     }
 }

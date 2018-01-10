@@ -5,23 +5,10 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/locationinfo_tv"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="main" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="main" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="main" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="main" />
+        android:background="#ddd"
+        android:textSize="18sp" />
 
 </LinearLayout>

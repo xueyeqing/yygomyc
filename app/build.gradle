@@ -50,6 +50,13 @@ android {
             //签名
             signingConfig signingConfigs.app
         }
+
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+            jni.srcDirs = []
+        }
     }
     dependencies {
         compile fileTree(dir: 'libs', include: ['*.jar'])

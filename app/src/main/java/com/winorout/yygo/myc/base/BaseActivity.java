@@ -1,7 +1,7 @@
 package com.winorout.yygo.myc.base;
 
 import android.os.Bundle;
-import com.trello.rxlifecycle2.components.RxActivity;
+
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 /**
@@ -33,4 +33,14 @@ public abstract class BaseActivity extends RxAppCompatActivity {
      */
     protected abstract void initBundleData();
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 }
